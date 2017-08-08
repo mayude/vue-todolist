@@ -1,15 +1,8 @@
 <template>
   <div>
     <div class="page-group">
-          <!-- 单个page ,第一个.page默认被展示-->
-      <div class="page">
-          <!-- 标题栏 -->
-        <header class="bar bar-nav">
-          <a class="icon icon-menu pull-left open-panel"></a>
-          <a class="icon icon-edit pull-right"></a>
-          <h1 class="title">todoList</h1>
-        </header>
-
+      <div class="page page-current" id="main">
+        <AppHeader></AppHeader>
         <div class="content">
           <div class="content-block">
             <div v-for="(item, index) in list" :key="index">
@@ -18,34 +11,32 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Left Panel with Reveal effect -->
-    <div class="panel panel-left panel-reveal">
-      <div class="content-block">
-        <p>这是一个侧栏</p>
-        <p></p>
-        <!-- Click on link with "close-panel" class will close panel -->
-        <p><a href="#" class="close-panel">关闭</a></p>
+  
+      <div class="page" id="edit">
+        <Edit :items="list"></Edit>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import AppHeader from './components/appHeader.vue'
 import Item from './components/item.vue'
+import Edit from './components/edit.vue'
 
 export default {
   name: 'app',
-  data () {
+  data() {
     return {
       list: []
     }
   },
   components: {
-    Item
+    AppHeader,
+    Item,
+    Edit
   },
-  mounted: function() {
+  mounted: function () {
     this.$http.get('./data/data.json').then((res) => {
       this.list = res.data;
     })

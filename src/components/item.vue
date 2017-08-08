@@ -1,10 +1,12 @@
 <template>
   <div class="card" v-bind:class="{done: isDone}">
     <div class="card-header">
-      <span class="card-title">{{item.title}}</span>
+      <a href="#edit">
+        <span class="card-title" @click="modifyItem(index)">{{item.title}}</span>
+      </a>
       <input name="check" type="checkbox" @click="isDone=!isDone"/>
     </div>
-    <div class="card-content">
+    <div v-show="item.content!=''" class="card-content">
       <div class="card-content-inner">{{item.content}}</div>
     </div>
     <div class="card-footer"> 
@@ -15,6 +17,8 @@
 </template>
 
 <script>
+import bus from './../eventBus.js'
+
 export default {
   props: ["items", "item", "index"],
   data() {
@@ -28,7 +32,7 @@ export default {
       this.itemList = val;
     },
     itemList(val) {
-      this.$emit("item changed", val);
+      this.$emit("items-changed", val);
     }
   },
   methods: {
@@ -36,6 +40,9 @@ export default {
       $.confirm('是否删除这条记录？', () => {
           this.itemList.splice(index, 1);
       });
+    },
+    modifyItem: function(index) {
+      bus.$emit("modify-item", index);
     }
   }
 }
@@ -48,6 +55,7 @@ export default {
   white-space: nowrap;
 }
 .card-title {
+  color: #333;
   font-weight: bold;
 }
 .date {
@@ -57,6 +65,7 @@ export default {
   color: #CCC;
 
   .card-title {
+    color: #CCC;
     text-decoration: line-through;
     text-decoration-color: #999;
     -moz-text-decoration-color: #999;
