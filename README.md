@@ -1,7 +1,13 @@
 # todolist
  
-vue入门刚几天，这是第一个webapp。vue上手确实比较快，文档真的超级友好！赞！b(￣▽￣)d    
-预览效果可以戳：[todoList](https://aqingc.github.io/vue-todolist/)
+vue入门刚几天，这是第一个webapp。     
+vue上手确实比较快，文档真的超级友好！赞！b(￣▽￣)d      
+预览效果可以戳：[todoList](https://aqingc.github.io/vue-todolist/)     
+     
+**预览图**     
+![image](https://github.com/AQingC/vue-todolist/blob/gh-pages/preview/todolist-1.png)
+![image](https://github.com/AQingC/vue-todolist/blob/gh-pages/preview/todolist-2.png)
+
    
 ## 分析&总结
 
